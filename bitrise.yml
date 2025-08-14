@@ -1,0 +1,136 @@
+format_version: "11"
+default_step_lib_ref: "https://github.com/bitrise-io/bitrise-steplib.git"
+
+app:
+  envs:
+  - BITRISE_PROJECT_PATH: "BybitTrader.xcodeproj"
+  - BITRISE_SCHEME: "BybitTrader"
+  - BITRISE_EXPORT_METHOD: "app-store"
+  - BITRISE_BUILD_CONFIGURATION: "Release"
+  - BITRISE_DEVELOPMENT_TEAM: "YOUR_TEAM_ID"
+  - BITRISE_CODE_SIGN_IDENTITY: "iPhone Developer"
+  - BITRISE_PROVISIONING_PROFILE_URL: "YOUR_PROVISIONING_PROFILE_URL"
+  - BYBIT_API_KEY: "$BYBIT_API_KEY"
+  - BYBIT_API_SECRET: "$BYBIT_API_SECRET"
+  - SUPABASE_URL: "https://koagmtxeomjrymgwnvub.supabase.co"
+  - SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtvYWdtdHhlb21qcnltZ3dudnViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUxNTg0ODYsImV4cCI6MjA3MDczNDQ4Nn0.n8nsLg_edXrdJmklTA7IDsHXeT9wiDxsjWAkUThrIhM"
+  - SUPABASE_SERVICE_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtvYWdtdHhlb21qcnltZ3dudnViIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImiaWF0IjoxNzU1MTU4NDg2LCJleHAiOjIwNzAwNzM0NDg2fQ.oeAfTX-vYIpekFqAxT5GtrQ-HQTty31dbfW2SDkNjPY"
+  - AI_CHAT_API_KEY: "sk-UJSfLa_vaSuXl4zi5rVbxw"
+
+workflows:
+  primary:
+    name: "iOS Build & Deploy"
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+        inputs:
+        - ssh_rsa_private_key: "$SSH_RSA_PRIVATE_KEY"
+        - ssh_key_save_path: "$HOME/.ssh/id_rsa"
+        - is_remove_other_identities: "true"
+    
+    - git-clone@6:
+        inputs:
+        - clone_depth: "1"
+        - fetch_tags: "true"
+        - checkout_branch: "$BITRISE_GIT_BRANCH"
+    
+    - cache-pull@2:
+        inputs:
+        - cache_paths: |
+            $HOME/.cocoapods
+            $HOME/Library/Caches/CocoaPods
+            $HOME/Library/Developer/Xcode/DerivedData
+    
+    - install-ruby@2:
+        inputs:
+        - ruby_version: "3.0"
+        - install_ruby_gems: "true"
+    
+    - install-cocoapods@1:
+        inputs:
+        - is_cache_disabled: "false"
+        - podfile_path: "Podfile"
+    
+    - xcode-archive@4:
+        inputs:
+        - project_path: "$BITRISE_PROJECT_PATH"
+        - scheme: "$BITRISE_SCHEME"
+        - export_method: "$BITRISE_EXPORT_METHOD"
+        - configuration: "$BITRISE_BUILD_CONFIGURATION"
+        - development_team: "$BITRISE_DEVELOPMENT_TEAM"
+        - code_sign_identity: "$BITRISE_CODE_SIGN_IDENTITY"
+        - provisioning_profile_url: "$BITRISE_PROVISIONING_PROFILE_URL"
+        - archive_path: "$BITRISE_DEPLOY_DIR/BybitTrader.xcarchive"
+        - export_options_path: "$BITRISE_SOURCE_DIR/exportOptions.plist"
+        - xcodebuild_options: "-allowProvisioningUpdates"
+        - should_build_before_archive: "true"
+        - force_team_id: "$BITRISE_DEVELOPMENT_TEAM"
+        - should_retry_on_failure: "true"
+        - should_clean_build_folder: "true"
+    
+    - deploy-to-bitrise-io@2:
+        inputs:
+        - deploy_path: "$BITRISE_DEPLOY_DIR"
+        - is_compress: "true"
+        - notify_user_groups: "testers"
+    
+    - cache-push@2:
+        inputs:
+        - cache_paths: |
+            $HOME/.cocoapods
+            $HOME/Library/Caches/CocoaPods
+            $HOME/Library/Developer/Xcode/DerivedData
+    
+    - slack@3:
+        run_if: '{{getenv "SLACK_WEBHOOK_URL" | ne ""}}'
+        inputs:
+        - webhook_url: "$SLACK_WEBHOOK_URL"
+        - channel: "#ios-builds"
+        - text: "🚀 Bybit Trader iOS build completed successfully!\n📱 Version: $BITRISE_APP_VERSION\n🔗 Download: $BITRISE_PUBLIC_INSTALL_PAGE_URL"
+        - icon_emoji: ":iphone:"
+        - username: "Bitrise Bot"
+
+  test:
+    name: "iOS Test & Lint"
+    steps:
+    - git-clone@6: {}
+    - cache-pull@2: {}
+    - install-ruby@2:
+        inputs:
+        - ruby_version: "3.0"
+    - install-cocoapods@1: {}
+    - xcode-test@4:
+        inputs:
+        - project_path: "$BITRISE_PROJECT_PATH"
+        - scheme: "$BITRISE_SCHEME"
+        - destination: "platform=iOS Simulator,name=iPhone 15,OS=latest"
+        - should_build_before_test: "true"
+        - should_retry_on_failure: "true"
+    - deploy-to-bitrise-io@2: {}
+    - cache-push@2: {}
+
+  beta:
+    name: "iOS Beta Release"
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@6: {}
+    - cache-pull@2: {}
+    - install-ruby@2:
+        inputs:
+        - ruby_version: "3.0"
+    - install-cocoapods@1: {}
+    - xcode-archive@4:
+        inputs:
+        - project_path: "$BITRISE_PROJECT_PATH"
+        - scheme: "$BITRISE_SCHEME"
+        - export_method: "ad-hoc"
+        - configuration: "Release"
+        - development_team: "$BITRISE_DEVELOPMENT_TEAM"
+        - code_sign_identity: "$BITRISE_CODE_SIGN_IDENTITY"
+        - provisioning_profile_url: "$BITRISE_PROVISIONING_PROFILE_URL"
+        - archive_path: "$BITRISE_DEPLOY_DIR/BybitTrader.xcarchive"
+        - export_options_path: "$BITRISE_SOURCE_DIR/exportOptionsAdHoc.plist"
+        - xcodebuild_options: "-allowProvisioningUpdates"
+    - deploy-to-bitrise-io@2: {}
+    - cache-push@2: {}

@@ -1,0 +1,241 @@
+format_version: "11"
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+
+app:
+  envs:
+  - APPLE_ID: $APPLE_ID
+  - APPLE_APP_PASSWORD: $APPLE_APP_PASSWORD
+  - TEAM_ID: $TEAM_ID
+  - BUNDLE_IDENTIFIER: $BUNDLE_IDENTIFIER
+  - XCODE_VERSION: "15.0"
+  - PROJECT_PATH: "BybitTrader.xcodeproj"
+  - SCHEME_NAME: "BybitTrader"
+  - EXPORT_METHOD: "app-store"
+  - CONFIGURATION: "Release"
+
+workflows:
+  primary:
+    name: Primary Workflow
+    description: "Основной workflow для сборки и деплоя BybitTrader"
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+        inputs:
+        - ssh_rsa_private_key: $SSH_RSA_PRIVATE_KEY
+        - ssh_key_save_path: $HOME/.ssh/id_rsa
+        - is_remove_other_keys: "true"
+    
+    - git-clone@0:
+        inputs:
+        - clone_depth: "1"
+        - should_use_lfs: "false"
+    
+    - cache-pull@2:
+        inputs:
+        - cache_paths: |
+            $HOME/.cocoapods
+            $HOME/Library/Developer/Xcode/DerivedData
+            $HOME/Library/Caches/CocoaPods
+    
+    - install-xcode@0:
+        inputs:
+        - xcode_version: $XCODE_VERSION
+    
+    - install-cocoapods@1:
+        inputs:
+        - is_update_repo: "true"
+        - is_use_bundle_exec: "false"
+    
+    - xcode-archive@4:
+        inputs:
+        - project_path: $PROJECT_PATH
+        - scheme: $SCHEME_NAME
+        - export_method: $EXPORT_METHOD
+        - configuration: $CONFIGURATION
+        - archive_path: "$BITRISE_SOURCE_DIR/build/BybitTrader.xcarchive"
+        - export_options_path: "$BITRISE_SOURCE_DIR/exportOptions.plist"
+        - should_build_before_archive: "true"
+        - force_team_id: $TEAM_ID
+        - force_development_team: $TEAM_ID
+        - xcodebuild_options: |
+            -allowProvisioningUpdates
+            -allowProvisioningDeviceRegistration
+    
+    - deploy-to-bitrise-io@2:
+        inputs:
+        - deploy_path: "$BITRISE_APK_PATH"
+        - is_enable_public_page: "true"
+    
+    - deploy-to-itunesconnect-application-loader@1:
+        run_if: '{{getenv "DEPLOY_TO_ITUNES" | eq "true"}}'
+        inputs:
+        - app_id: $APPLE_ID
+        - password: $APPLE_APP_PASSWORD
+        - team_id: $TEAM_ID
+        - ipa_path: "$BITRISE_APK_PATH"
+        - skip_metadata: "false"
+        - skip_screenshots: "false"
+        - submit_to_beta_testing: "false"
+        - submit_to_app_store: "true"
+    
+    - slack@3:
+        run_if: '{{getenv "SLACK_WEBHOOK_URL" | ne ""}}'
+        inputs:
+        - webhook_url: $SLACK_WEBHOOK_URL
+        - channel: "#bybittrader"
+        - username: "Bitrise Bot"
+        - text: |
+            :white_check_mark: Сборка BybitTrader завершена успешно!
+            :iphone: Версия: $BITRISE_APP_VERSION
+            :link: <$BITRISE_BUILD_URL|Просмотреть сборку>
+        - icon_url: "https://www.bitrise.io/assets/favicon-32x32.png"
+
+  develop:
+    name: Develop Workflow
+    description: "Workflow для ветки develop с тестированием"
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+        inputs:
+        - ssh_rsa_private_key: $SSH_RSA_PRIVATE_KEY
+        - ssh_key_save_path: $HOME/.ssh/id_rsa
+        - is_remove_other_keys: "true"
+    
+    - git-clone@0:
+        inputs:
+        - clone_depth: "1"
+        - should_use_lfs: "false"
+    
+    - cache-pull@2:
+        inputs:
+        - cache_paths: |
+            $HOME/.cocoapods
+            $HOME/Library/Developer/Xcode/DerivedData
+            $HOME/Library/Caches/CocoaPods
+    
+    - install-xcode@0:
+        inputs:
+        - xcode_version: $XCODE_VERSION
+    
+    - install-cocoapods@1:
+        inputs:
+        - is_update_repo: "true"
+        - is_use_bundle_exec: "false"
+    
+    - xcode-test@1:
+        inputs:
+        - project_path: $PROJECT_PATH
+        - scheme: $SCHEME_NAME
+        - configuration: "Debug"
+        - destination: "platform=iOS Simulator,name=iPhone 15,OS=latest"
+        - should_build_before_test: "true"
+        - should_retry_test_on_fail: "true"
+        - test_repetition_mode: "retry_on_failure"
+        - maximum_test_execution_time: "30"
+    
+    - xcode-archive@4:
+        inputs:
+        - project_path: $PROJECT_PATH
+        - scheme: $SCHEME_NAME
+        - export_method: "ad-hoc"
+        - configuration: "Debug"
+        - archive_path: "$BITRISE_SOURCE_DIR/build/BybitTrader.xcarchive"
+        - export_options_path: "$BITRISE_SOURCE_DIR/exportOptionsAdHoc.plist"
+        - should_build_before_archive: "true"
+        - force_team_id: $TEAM_ID
+        - force_development_team: $TEAM_ID
+    
+    - deploy-to-bitrise-io@2:
+        inputs:
+        - deploy_path: "$BITRISE_APK_PATH"
+        - is_enable_public_page: "true"
+    
+    - slack@3:
+        run_if: '{{getenv "SLACK_WEBHOOK_URL" | ne ""}}'
+        inputs:
+        - webhook_url: $SLACK_WEBHOOK_URL
+        - channel: "#bybittrader-dev"
+        - username: "Bitrise Bot"
+        - text: |
+            :gear: Тестовая сборка BybitTrader завершена!
+            :iphone: Версия: $BITRISE_APP_VERSION
+            :link: <$BITRISE_BUILD_URL|Просмотреть сборку>
+        - icon_url: "https://www.bitrise.io/assets/favicon-32x32.png"
+
+  pull-request:
+    name: Pull Request Workflow
+    description: "Workflow для проверки Pull Request"
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+        inputs:
+        - ssh_rsa_private_key: $SSH_RSA_PRIVATE_KEY
+        - ssh_key_save_path: $HOME/.ssh/id_rsa
+        - is_remove_other_keys: "true"
+    
+    - git-clone@0:
+        inputs:
+        - clone_depth: "1"
+        - should_use_lfs: "false"
+    
+    - cache-pull@2:
+        inputs:
+        - cache_paths: |
+            $HOME/.cocoapods
+            $HOME/Library/Developer/Xcode/DerivedData
+            $HOME/Library/Caches/CocoaPods
+    
+    - install-xcode@0:
+        inputs:
+        - xcode_version: $XCODE_VERSION
+    
+    - install-cocoapods@1:
+        inputs:
+        - is_update_repo: "true"
+        - is_use_bundle_exec: "false"
+    
+    - xcode-test@1:
+        inputs:
+        - project_path: $PROJECT_PATH
+        - scheme: $SCHEME_NAME
+        - configuration: "Debug"
+        - destination: "platform=iOS Simulator,name=iPhone 15,OS=latest"
+        - should_build_before_test: "true"
+        - should_retry_test_on_fail: "true"
+        - test_repetition_mode: "retry_on_failure"
+        - maximum_test_execution_time: "30"
+    
+    - xcode-build@1:
+        inputs:
+        - project_path: $PROJECT_PATH
+        - scheme: $SCHEME_NAME
+        - configuration: "Debug"
+        - destination: "platform=iOS Simulator,name=iPhone 15,OS=latest"
+        - should_build_before_test: "false"
+        - should_retry_test_on_fail: "true"
+        - test_repetition_mode: "retry_on_failure"
+        - maximum_test_execution_time: "30"
+    
+    - slack@3:
+        run_if: '{{getenv "SLACK_WEBHOOK_URL" | ne ""}}'
+        inputs:
+        - webhook_url: $SLACK_WEBHOOK_URL
+        - channel: "#bybittrader-pr"
+        - username: "Bitrise Bot"
+        - text: |
+            :mag: Проверка Pull Request завершена!
+            :iphone: Проект: BybitTrader
+            :link: <$BITRISE_BUILD_URL|Просмотреть результаты>
+        - icon_url: "https://www.bitrise.io/assets/favicon-32x32.png"
+
+triggers:
+  - push_branch: main
+    workflow: primary
+  - push_branch: develop
+    workflow: develop
+  - pull_request_target_branch: main
+    workflow: pull-request
+  - pull_request_target_branch: develop
+    workflow: pull-request
+  - tag: "v*"
+    workflow: primary

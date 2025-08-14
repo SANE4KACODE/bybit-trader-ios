@@ -1,0 +1,423 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A1234567890123456789014A /* BybitTraderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789014B /* BybitTraderApp.swift */; };
+		A1234567890123456789014C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789014D /* ContentView.swift */; };
+		A1234567890123456789014E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789014F /* Models.swift */; };
+		A1234567890123456789015A /* BybitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789015B /* BybitService.swift */; };
+		A1234567890123456789015C /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789015D /* SettingsService.swift */; };
+		A1234567890123456789015E /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789015F /* BalanceView.swift */; };
+		A1234567890123456789016A /* TradingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789016B /* TradingView.swift */; };
+		A1234567890123456789016C /* PositionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789016D /* PositionsView.swift */; };
+		A1234567890123456789016E /* OrderHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789016F /* OrderHistoryView.swift */; };
+		A1234567890123456789017A /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789017B /* NotificationSettingsView.swift */; };
+		A1234567890123456789017C /* ExportSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789017D /* ExportSettingsView.swift */; };
+		A1234567890123456789017E /* PriceChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789017F /* PriceChartView.swift */; };
+		A1234567890123456789018A /* AnimatedCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789018B /* AnimatedCardsView.swift */; };
+		A1234567890123456789018C /* LearningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789018D /* LearningView.swift */; };
+		A1234567890123456789018E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789018F /* Assets.xcassets */; };
+		A1234567890123456789019A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1234567890123456789019B /* Preview Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A1234567890123456789013E /* BybitTrader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BybitTrader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1234567890123456789014B /* BybitTraderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitTraderApp.swift; sourceTree = "<group>"; };
+		A1234567890123456789014D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A1234567890123456789014F /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		A1234567890123456789015B /* BybitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitService.swift; sourceTree = "<group>"; };
+		A1234567890123456789015D /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
+		A1234567890123456789015F /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
+		A1234567890123456789016B /* TradingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingView.swift; sourceTree = "<group>"; };
+		A1234567890123456789016D /* PositionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionsView.swift; sourceTree = "<group>"; };
+		A1234567890123456789016F /* OrderHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryView.swift; sourceTree = "<group>"; };
+		A1234567890123456789017B /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
+		A1234567890123456789017D /* ExportSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportSettingsView.swift; sourceTree = "<group>"; };
+		A1234567890123456789017F /* PriceChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceChartView.swift; sourceTree = "<group>"; };
+		A1234567890123456789018B /* AnimatedCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedCardsView.swift; sourceTree = "<group>"; };
+		A1234567890123456789018D /* LearningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningView.swift; sourceTree = "<group>"; };
+		A1234567890123456789018F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A1234567890123456789019B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A1234567890123456789019C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A1234567890123456789013B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A1234567890123456789013C = {
+			isa = PBXGroup;
+			children = (
+				A1234567890123456789014A /* BybitTrader */,
+				A1234567890123456789019A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A1234567890123456789014A /* BybitTrader */ = {
+			isa = PBXGroup;
+			children = (
+				A1234567890123456789014B /* BybitTraderApp.swift */,
+				A1234567890123456789014D /* ContentView.swift */,
+				A1234567890123456789015A /* Models */,
+				A1234567890123456789015B /* Services */,
+				A1234567890123456789015C /* Views */,
+				A1234567890123456789018F /* Assets.xcassets */,
+				A1234567890123456789019C /* Info.plist */,
+				A1234567890123456789019D /* Preview Content */,
+			);
+			path = BybitTrader;
+			sourceTree = "<group>";
+		};
+		A1234567890123456789015A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A1234567890123456789014F /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A1234567890123456789015B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A1234567890123456789015B /* BybitService.swift */,
+				A1234567890123456789015D /* SettingsService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A1234567890123456789015C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A1234567890123456789015F /* BalanceView.swift */,
+				A1234567890123456789016B /* TradingView.swift */,
+				A1234567890123456789016D /* PositionsView.swift */,
+				A1234567890123456789016F /* OrderHistoryView.swift */,
+				A1234567890123456789017B /* NotificationSettingsView.swift */,
+				A1234567890123456789017D /* ExportSettingsView.swift */,
+				A1234567890123456789017F /* PriceChartView.swift */,
+				A1234567890123456789018B /* AnimatedCardsView.swift */,
+				A1234567890123456789018D /* LearningView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A1234567890123456789019A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1234567890123456789013E /* BybitTrader.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A1234567890123456789019D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				A1234567890123456789019B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A1234567890123456789013D /* BybitTrader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1234567890123456789019E /* Build configuration list for PBXNativeTarget "BybitTrader" */;
+			buildPhases = (
+				A1234567890123456789013A /* Sources */,
+				A1234567890123456789013B /* Frameworks */,
+				A1234567890123456789013C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BybitTrader;
+			productName = BybitTrader;
+			productReference = A1234567890123456789013E /* BybitTrader.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A1234567890123456789013F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					A1234567890123456789013D = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = A1234567890123456789014A /* Build configuration list for PBXProject "BybitTrader" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A1234567890123456789013C;
+			productRefGroup = A1234567890123456789019A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A1234567890123456789013D /* BybitTrader */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A1234567890123456789013C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1234567890123456789019A /* Preview Assets.xcassets in Resources */,
+				A1234567890123456789018E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A1234567890123456789013A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1234567890123456789014C /* ContentView.swift in Sources */,
+				A1234567890123456789014E /* Models.swift in Sources */,
+				A1234567890123456789015A /* BybitService.swift in Sources */,
+				A1234567890123456789015C /* SettingsService.swift in Sources */,
+				A1234567890123456789015E /* BalanceView.swift in Sources */,
+				A1234567890123456789016A /* TradingView.swift in Sources */,
+				A1234567890123456789016C /* PositionsView.swift in Sources */,
+				A1234567890123456789016E /* OrderHistoryView.swift in Sources */,
+				A1234567890123456789017A /* NotificationSettingsView.swift in Sources */,
+				A1234567890123456789017C /* ExportSettingsView.swift in Sources */,
+				A1234567890123456789017E /* PriceChartView.swift in Sources */,
+				A1234567890123456789018A /* AnimatedCardsView.swift in Sources */,
+				A1234567890123456789018C /* LearningView.swift in Sources */,
+				A1234567890123456789014A /* BybitTraderApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A1234567890123456789019F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A123456789012345678901A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A123456789012345678901A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BybitTrader/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BybitTrader/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bybittrader.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A123456789012345678901A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BybitTrader/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BybitTrader/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bybittrader.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A1234567890123456789014A /* Build configuration list for PBXProject "BybitTrader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1234567890123456789019F /* Debug */,
+				A123456789012345678901A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1234567890123456789019E /* Build configuration list for PBXNativeTarget "BybitTrader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A123456789012345678901A1 /* Debug */,
+				A123456789012345678901A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A1234567890123456789013F /* Project object */;
+}
